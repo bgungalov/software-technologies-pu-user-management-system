@@ -1,0 +1,74 @@
+.card-subtitle {
+  font-style: italic;
+  font-weight: 500;
+  color: red;
+}
+
+.nested-card mat-card {
+  text-align: left;
+  font-size: medium;
+  outline: 2px solid var(--primary-light);
+  box-shadow: 0px 5px 5px var(--primary);
+}
+
+.nested-card mat-divider {
+  color: red;
+  background-color: red;
+  height: 1px;
+}
+
+.accordion mat-panel-title {
+  font-weight: 500;
+}
+
+mat-card-header mat-card-title {
+  font-size: large;
+}
+
+.card mat-icon {
+  vertical-align: middle;
+}
+
+.avatar-image {
+  background-image: url("../../../../../assets/avatar.svg");
+}
+
+mat-card-header mat-card-subtitle {
+  font-size: medium;
+}
+
+mat-card-actions {
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3vh;
+}
+
+.btn-edit-roles {
+  background-color: var(--white);
+  color: var(--red);
+}
+
+.open-messages {
+  background-color: var(--white);
+  color: var(--blue);
+}
+
+.open-messages:hover {
+  background-color: var(--white);
+  color: var(--light-blue);
+}
+
+.btn-edit-roles:hover {
+  background-color: var(--button-hover-light);
+  color: var(--red);
+}
+
+.current-role-container {
+  font-weight: 500;
+  color: var(--green);
+}
+
+.current-role-container:hover {
+  border-radius: 10px;
+}

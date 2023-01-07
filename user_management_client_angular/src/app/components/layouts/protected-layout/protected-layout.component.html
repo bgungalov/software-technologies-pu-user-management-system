@@ -1,0 +1,31 @@
+<mat-drawer-container class="drawer-container" autosize>
+    <mat-drawer #drawer class="drawer-sidenav" mode="side" [opened]="true">
+        <div class="link-wrapper">
+            <ul>
+                <li *ngFor="let item of appLinks" class="sidebar-menu-item" [class]="'at-side-menu-'+item.title"
+                    routerLinkActive="active">
+                    <p routerLink="{{item.path}}" id="{{item.title}}">
+                        <mat-icon>{{item.icon}}</mat-icon> {{item.title}}
+                    </p>
+                </li>
+            </ul>
+        </div>
+
+    </mat-drawer>
+    <div class="navbar">
+        <button (click)="handleLogout()" mat-button class="btn-logout">
+            <mat-icon>logout</mat-icon>
+            Logout
+        </button>
+    </div>
+    <button [ngClass]="{closed:!drawer.opened}" class="button-drawer" type="button" mat-button (click)="drawer.toggle()"
+        (click)="change_menu_icon = !change_menu_icon">
+        <mat-icon>
+            {{change_menu_icon ? 'arrow_forward_ios' : 'arrow_back_ios'}}
+        </mat-icon>
+    </button>
+    <div class="router-wrapper">
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-drawer-container>

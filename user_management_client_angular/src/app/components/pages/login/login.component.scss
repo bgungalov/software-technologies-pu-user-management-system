@@ -1,0 +1,47 @@
+.login-form{
+    height: min-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+
+mat-card {
+  max-width: 100%;
+  margin: 10em auto;
+  text-align: center;
+  max-height: 50%;
+  top: 50%;
+}
+
+.header {
+  text-align: center;
+}
+.full-width {
+  width: 100%;
+}
+
+.button-row {
+  padding-top: 5px;
+}
+
+.button-row a {
+  margin-right: 8px;
+  text-align: center;
+}
+
+.emailInput {
+  padding-top: 10px;
+}
+
+.contentBody {
+  padding: 60px 1rem;
+  background: black;
+  display: block;
+}
+
+.aLink {
+  float: right;
+  padding-right: 60px;
+  text-decoration: none;
+}

@@ -1,0 +1,107 @@
+<div class="card" *ngIf="user">
+  <mat-card id="user-details">
+    <mat-card-header>
+      <div mat-card-avatar class="avatar-image"></div>
+      <mat-card-title>{{ user.firstName }}</mat-card-title>
+      <mat-card-subtitle class="card-subtitle">{{ user.middleName | trailingCommas }}{{ user.lastName }}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="accordion">
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title> User Information </mat-panel-title>
+              <mat-panel-description>
+                Click to {{ panelOpenState ? "hide" : "view" }}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="nested-card">
+              <mat-card>
+                <div>
+                  <mat-icon matTooltip="email">mail</mat-icon> {{ user.email }}
+                </div>
+                <hr />
+                <div>
+                  <mat-icon matTooltip="phone number">call</mat-icon>
+                  {{ user.phoneNumber }}
+                </div>
+                <hr />
+                <div>
+                  <mat-icon matTooltip="adress">location_on</mat-icon>
+                  {{ user.userDetails.country | trailingCommas
+                  }}{{ user.userDetails.city | trailingCommas
+                  }}{{ user.userDetails.address | trailingCommas
+                  }}{{ user.userDetails.street | trailingCommas
+                  }}{{ user.userDetails.cityPostCode }}
+                </div>
+                <hr />
+                <div>
+                  <button (click)="dialogEditUserRoles()" mat-button aria-label="Edit user roles" class="btn-edit-roles"
+                    matTooltip="Click to assign new user role">
+                    <mat-icon>edit</mat-icon>Assign Role
+                  </button>
+                  <div *ngIf="foundCurrentRole">
+                    <p class="current-role-container" matTooltip="Active current role Start Date: {{
+                        foundCurrentRole.startDate | dateFormatDDMMYYYY
+                      }} / End Date: {{
+                        foundCurrentRole.endDate | dateFormatDDMMYYYY
+                      }}">
+                      <mat-icon>manage_accounts</mat-icon>
+                      {{ foundCurrentRole.roleName }}
+                      <button (click)="confirmTerminateUserRole(foundCurrentRole)" mat-icon-button
+                        aria-label="Terminate user role" class="btn-edit-roles" matTooltip="Terminate user role">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </p>
+                  </div>
+                </div>
+                <div *ngFor="let role of user.roles">
+                  <div *ngIf="foundCurrentRole; else noCurrentRole">
+                    <p *ngIf="role.id !== foundCurrentRole.id" matTooltip="Start Date: {{
+                        role.startDate | dateFormatDDMMYYYY
+                      }} / End Date: {{ role.endDate | dateFormatDDMMYYYY }}">
+                      <mat-icon>manage_accounts</mat-icon>
+                      {{ role.roleName }}
+                      <button (click)="confirmTerminateUserRole(role)" mat-icon-button aria-label="Terminate user role"
+                        class="btn-edit-roles" matTooltip="Terminate user role">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </p>
+                  </div>
+                  <ng-template #noCurrentRole>
+                    <p matTooltip="Start Date: {{
+                        role.startDate | dateFormatDDMMYYYY
+                      }} / End Date: {{ role.endDate | dateFormatDDMMYYYY }}">
+                      <mat-icon>manage_accounts</mat-icon>
+                      {{ role.roleName }}
+                      <button (click)="confirmTerminateUserRole(role)" mat-icon-button aria-label="Terminate user role"
+                        class="btn-edit-roles" matTooltip="Terminate user role">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </p>
+                  </ng-template>
+                </div>
+                <hr />
+
+                <div *ngIf="user.userDetails.ucn">
+                  <mat-icon matTooltip="ucn">fingerprint</mat-icon>
+                  {{ user.userDetails.ucn }}
+                  <hr />
+                </div>
+              </mat-card>
+            </div>
+            <mat-card-actions>
+              <button mat-button class="btn-primary-success" (click)="navigateToUpdateUser()">
+                Update
+              </button>
+              <button mat-button class="btn-primary-error" (click)="deleteUser()">
+                Delete
+              </button>
+            </mat-card-actions>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
